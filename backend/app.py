@@ -5,13 +5,13 @@ from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
-  # Allow frontend to connect
+ 
 
 DB_NAME = "feedback.db"
 @app.route("/submit-feedback", methods=["POST"])
 def submit_feedback():
     data = request.get_json()
-    print("✅ FRONTEND SENT:", data)  # Log data received
+    print(" FRONTEND SENT:", data)  
 
     if not data:
         return jsonify({"error": "No data received"}), 400
@@ -50,13 +50,13 @@ def get_feedback():
             "timestamp": row[3]
         } for row in rows]
 
-        # ✅ WRAP IN A DICTIONARY
+
         return jsonify({"feedback": feedback_list}), 200
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 
-# Step 4: Run Flask
+
 if __name__ == '__main__':
     app.run(debug=True)
